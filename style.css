@@ -1,0 +1,99 @@
+@charset "UTF-8";
+/**
+ * CSS Resets
+ */
+html {
+  box-sizing: border-box; }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 200px; }
+
+/**
+ * Keyframes
+ *
+ * A few keyframes are defined to control the countdown and radar animations.
+ */
+@keyframes countdown {
+  0% {
+    content: "3"; }
+  33% {
+    content: "2"; }
+  66% {
+    content: "1"; }
+  100% {
+    content: "◼"; } }
+@keyframes radar {
+  0% {
+    opacity: 0;
+    transform: scale(1); }
+  1% {
+    opacity: 0.35;
+    transform: scale(1); }
+  80% {
+    opacity: 0;
+    transform: scale(1.2); }
+  100% {
+    opacity: 0;
+    transform: scale(1.2); } }
+/**
+ * Variables to control the button.
+ */
+/**
+ * Styles for the record button.
+ *
+ * Assumes that an empty button element is wrapped inside a div with the class
+ * of record-container. The actual text for the button is accomplished using
+ * pseudo elements so no text is needed in the button html.
+ */
+.record-container button {
+  background: #f02525;
+  border: none;
+  border-radius: 100%;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  height: 40px;
+  outline: 0;
+  position: relative;
+  width: 40px; }
+  .record-container button:after {
+    content: "";
+    font-size: 20px;
+    height: 40px;
+    left: 50%;
+    line-height: 40px;
+    margin: -20px 0 0 -20px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 40px; }
+  .record-container button.active:before {
+    animation: radar 1s infinite;
+    border: 3px solid #f02525;
+    border-radius: 100%;
+    content: "";
+    height: 50px;
+    left: -5px;
+    position: absolute;
+    top: -5px;
+    width: 50px; }
+  .record-container button.active:after {
+    animation: countdown 3s steps(1) forwards;
+    content: ""; }
+  .record-container button.finish:before {
+    animation: radar 2s infinite;
+    border: 2px solid #f02525;
+    height: 40px;
+    left: 0;
+    top: 0;
+    width: 40px;
+    z-index: -1; }
+
+/*# sourceMappingURL=style.css.map */

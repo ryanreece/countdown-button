@@ -1,0 +1,148 @@
+/**
+ * CSS Resets
+ */
+html {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+// Set the font and frame the button a bit.
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 200px;
+}
+
+/**
+ * Keyframes
+ *
+ * A few keyframes are defined to control the countdown and radar animations.
+ */
+@keyframes countdown {
+  0% {
+    content: "3";
+  }
+  33% {
+    content: "2";
+  }
+  66% {
+    content: "1";
+  }
+  100% {
+    content: "◼";
+  }
+}
+
+@keyframes radar {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  1% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  80% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}
+
+/**
+ * Variables to control the button.
+ */
+$button-size: 40px;
+$button-color: #f02525;
+
+// Additional pixels to add to the radar size based on the button's size.
+$radar-size-increase: 10px;
+
+// The actual radar size based on the button size and the size increase.
+$radar-size: $button-size + $radar-size-increase;
+$radar-color: #f02525;
+
+$font-size-scale: 0.5;
+$font-size: $button-size * $font-size-scale;
+
+/**
+ * Styles for the record button.
+ *
+ * Assumes that an empty button element is wrapped inside a div with the class
+ * of record-container. The actual text for the button is accomplished using
+ * pseudo elements so no text is needed in the button html.
+ */
+.record-container {
+  button {
+    background: $button-color;
+    border: none;
+    border-radius: 100%;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+    cursor: pointer;
+    height: $button-size;
+    outline: 0;
+    position: relative;
+    width: $button-size;
+
+    // Button text
+    &:after {
+      content: "";
+      font-size: $font-size;
+      height: $button-size;
+      left: 50%;
+      line-height: $button-size;
+      margin: ($button-size / 2 * -1) 0 0 ($button-size / 2 * -1);
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      width: $button-size;
+    }
+
+    &.active {
+      // Radar
+      &:before {
+        animation: radar 1s infinite;
+        border: 3px solid $radar-color;
+        border-radius: 100%;
+        content: "";
+        height: $radar-size;
+        left: ($radar-size-increase / 2 * -1);
+        position: absolute;
+        top: ($radar-size-increase / 2 * -1);
+        width: $radar-size;
+      }
+
+      // Button text animation
+      &:after {
+        animation: countdown 3s steps(1) forwards;
+        content: "";
+      }
+    }
+
+    // The button assumes that a finish class will be added once the recording
+    // starts. Without the finish class, the large red radar will continue to
+    // animate.
+    &.finish {
+      // Resulting box shadow
+      &:before {
+        animation: radar 2s infinite;
+        border: 2px solid $radar-color;
+        height: $button-size;
+        left: 0;
+        top: 0;
+        width: $button-size;
+        z-index: -1;
+      }
+    }
+  }
+}
