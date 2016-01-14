@@ -9,15 +9,15 @@ icon.
 
 ## Variables
 Several variables can be defined to control the look and feel of the button.
-They are outlined here.
-`$button-size` Defines the size of the button.
-`$button-color` Defines the color of the button background.
-`$radar-size-increase` The size of the radar animation is based on the button's size plus this value.
-`$radar-size` Calculated based on the `$button-size` and `$radar-size-increase`.
-`$radar-color` The color of the radar animation. Since it uses opacity, keeping this the same as the `$button-color` looks best.
-`$font-scale-size` The size of the font in relation to the button size. Default is 0.5.
-`$font-size` The calculated size of the countdown text and pause icon.
+They are outlined here.  
+`$button-size` Defines the size of the button.  
+`$button-color` Defines the color of the button background.  
+`$radar-size-increase` The size of the radar animation is based on the button's size plus this value.  
+`$radar-size` Calculated based on the `$button-size` and `$radar-size-increase`.  
+`$radar-color` The color of the radar animation. Since it uses opacity, keeping this the same as the `$button-color` looks best.  
+`$font-scale-size` The size of the font in relation to the button size. Default is 0.5.  
+`$font-size` The calculated size of the countdown text and pause icon.  
 
 ## SASS Commands
-`sass style.scss:style.css`
+`sass style.scss:style.css`  
 `sass --watch style.scss:style.css`
